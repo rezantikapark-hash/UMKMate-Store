@@ -73,7 +73,7 @@ let products = [
     name: "Jus Buah",
     category: "Minuman",
     price: 14000,
-    image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=600",
+    image: "https://i.pinimg.com/1200x/ba/0c/12/ba0c12b771ed1a1a25e8aaad733c5c85.jpg",
     description: "Minuman buah segar tanpa ribet."
   }
 ];
