@@ -54,7 +54,7 @@ let products = [
     name: "Keripik Pisang",
     category: "Makanan",
     price: 18000,
-    image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600",
+    image: https://i.pinimg.com/1200x/8b/8d/75/8b8d755cf166ccd7e0d6efda0662c39c.jpg",
     description: "Keripik pisang renyah khas UMKM."
   },
   {
