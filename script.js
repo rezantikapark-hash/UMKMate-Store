@@ -7,9 +7,14 @@
 // Gunakan kode negara 62, tanpa tanda +.
 const WHATSAPP_NUMBER = "6281549445378";
 
+
 // ==================================
 // 2. DATA PRODUK
 // ==================================
+
+// NAIKKAN NOMOR VERSI SETIAP KALI MENGUBAH DATA PRODUK DI VS CODE.
+// Nomor versi ini harus sama di script.js dan admin.js.
+const PRODUCT_DATA_VERSION = "2";
 
 let products = [
   {
@@ -65,7 +70,7 @@ let products = [
     name: "Sambal Homemade",
     category: "Makanan",
     price: 20000,
-    image: "https://images.unsplash.com/photo-1472476443507-c7a5948772fc?w=600",
+    image: "https://i.pinimg.com/1200x/7c/36/07/7c360794a54169435b3d7b2bf6f7dea1.jpg",
     description: "Sambal rumahan dengan cita rasa khas."
   },
   {
@@ -78,27 +83,41 @@ let products = [
   }
 ];
 
+// ==================================
+// SINKRONISASI DATA VS CODE DAN ADMIN
+// ==================================
 
-// AMBIL DATA PRODUK DARI DASHBOARD ADMIN
+const PRODUCT_STORAGE_KEY = "umkmateProducts";
+const PRODUCT_VERSION_KEY = "umkmateProductsVersion";
+
 try {
+  const savedVersion = localStorage.getItem(PRODUCT_VERSION_KEY);
   const savedProducts = JSON.parse(
-    localStorage.getItem("umkmateProducts")
+    localStorage.getItem(PRODUCT_STORAGE_KEY)
   );
 
-  if (Array.isArray(savedProducts)) {
-    products = savedProducts;
-  } else {
+  // Jika versi berubah, gunakan data terbaru dari VS Code.
+  if (
+    savedVersion !== PRODUCT_DATA_VERSION ||
+    !Array.isArray(savedProducts)
+  ) {
     localStorage.setItem(
-      "umkmateProducts",
+      PRODUCT_STORAGE_KEY,
       JSON.stringify(products)
     );
+
+    localStorage.setItem(
+      PRODUCT_VERSION_KEY,
+      PRODUCT_DATA_VERSION
+    );
+  } else {
+    // Jika versi sama, gunakan perubahan yang disimpan melalui admin.
+    products = savedProducts;
   }
 } catch (error) {
-  localStorage.setItem(
-    "umkmateProducts",
-    JSON.stringify(products)
-  );
+  console.error("Gagal memuat data produk:", error);
 }
+
 
 // ==================================
 // 3. PENYIMPANAN KERANJANG
