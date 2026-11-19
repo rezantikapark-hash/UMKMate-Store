@@ -8,7 +8,7 @@ const defaultProducts = [
   { id: 5, name: "Keripik Pisang", category: "Makanan", price: 12000, image: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=600" },
   { id: 6, name: "Tas Rajut", category: "Fashion", price: 65000, image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600" },
   { id: 7, name: "Sambal Homemade", category: "Makanan", price: 20000, image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600" },
-  { id: 8, name: "Jus Buah", category: "Minuman", price: 15000, image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=600" }
+  { id: 8, name: "Jus Buah", category: "Minuman", price: 15000, image: "https://i.pinimg.com/1200x/ba/0c/12/ba0c12b771ed1a1a25e8aaad733c5c85.jpg" }
 ];
 
 // AMBIL PRODUK DARI PENYIMPANAN BROWSER
