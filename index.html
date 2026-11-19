@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UMKMate Store - Belanja Produk Lokal</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="#" class="logo">UMKMate<span>.</span></a>
+
+    <nav>
+  <a href="#home">Home</a>
+  <a href="#products">Produk</a>
+  <a href="#about">Tentang Kami</a>
+  <a href="admin.html">Admin</a>
+</nav>
+
+    <button class="cart-button" onclick="toggleCart()">
+      🛍 Keranjang <span id="cart-count">0</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <span class="eyebrow">SUPPORT LOCAL BUSINESS</span>
+        <h1>Temukan Produk Lokal,<br><em>Belanja Lebih Mudah.</em></h1>
+        <p>
+          Pilihan produk UMKM berkualitas untuk menemani
+          kebutuhan dan gaya hidupmu.
+        </p>
+        <a href="#products" class="primary-button">Belanja Sekarang →</a>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=900"
+          alt="Produk lokal">
+      </div>
+    </section>
+
+    <section class="categories">
+      <div>
+        <span class="eyebrow">EXPLORE COLLECTION</span>
+        <h2>Belanja berdasarkan kategori</h2>
+      </div>
+      <div class="category-list">
+        <button class="category active" onclick="filterProducts('Semua')">Semua</button>
+        <button class="category" onclick="filterProducts('Makanan')">Makanan</button>
+        <button class="category" onclick="filterProducts('Minuman')">Minuman</button>
+        <button class="category" onclick="filterProducts('Fashion')">Fashion</button>
+        <button class="category" onclick="filterProducts('Kerajinan')">Kerajinan</button>
+      </div>
+    </section>
+
+    <section class="products-section" id="products">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">OUR PRODUCTS</span>
+          <h2>Produk pilihan untukmu</h2>
+        </div>
+        <input type="search" id="search"
+          placeholder="Cari produk..."
+          oninput="searchProducts()">
+      </div>
+
+      <div class="product-grid" id="product-list"></div>
+    </section>
+
+    <section class="about" id="about">
+      <span class="eyebrow">ABOUT UMKMATE</span>
+      <h2>Dukung UMKM, Bangun Ekonomi Lokal.</h2>
+      <p>
+        UMKMate hadir sebagai ruang digital untuk
+        memperkenalkan produk-produk lokal dan membantu
+        pelaku UMKM menjangkau lebih banyak pelanggan.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <h2>UMKMate<span>.</span></h2>
+    <p>Discover Local, Shop Easily.</p>
+    <small>© 2026 UMKMate Store. All rights reserved.</small>
+  </footer>
+
+  <!-- CART SIDEBAR -->
+  <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+
+  <aside class="cart-panel" id="cart-panel">
+    <div class="cart-header">
+      <h2>Keranjang Belanja</h2>
+      <button onclick="toggleCart()">✕</button>
+    </div>
+
+    <div id="cart-items"></div>
+
+    <div class="cart-footer">
+      <div class="total">
+        <span>Total Belanja</span>
+        <strong id="cart-total">Rp0</strong>
+      </div>
+      <button class="primary-button full" onclick="openCheckout()">
+        Checkout →
+      </button>
+    </div>
+  </aside>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="modal" id="checkout-modal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeCheckout()">✕</button>
+      <span class="eyebrow">ORDER INFORMATION</span>
+      <h2>Checkout Pesanan</h2>
+
+      <form id="checkout-form">
+        <label>Nama Lengkap</label>
+        <input type="text" id="customer-name" required
+          placeholder="Masukkan nama">
+
+        <label>Nomor WhatsApp</label>
+        <input type="tel" id="customer-phone" required
+          placeholder="08xxxxxxxxxx">
+
+        <label>Alamat Pengiriman</label>
+        <textarea id="customer-address" required
+          placeholder="Masukkan alamat lengkap"></textarea>
+
+        <label>Catatan Pesanan</label>
+        <textarea id="customer-note"
+          placeholder="Catatan tambahan (opsional)"></textarea>
+
+        <button type="submit" class="primary-button full">
+          Pesan melalui WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
