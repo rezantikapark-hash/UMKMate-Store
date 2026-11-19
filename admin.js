@@ -1,18 +1,108 @@
 
+
 // DATA AWAL PRODUK
+const PRODUCT_DATA_VERSION = "2";
+
 const defaultProducts = [
-  { id: 1, name: "Makaroni Pedas", category: "Makanan", price: 15000, image: "https://i.pinimg.com/736x/36/bf/39/36bf39fb8a93718f0eecfe8c8935a629.jpg" },
-  { id: 2, name: "Cookies Premium", category: "Makanan", price: 25000, image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=600" },
-  { id: 3, name: "Kopi Susu", category: "Minuman", price: 18000, image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600" },
-  { id: 4, name: "Gift Hampers", category: "Kerajinan", price: 85000, image: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=600" },
-  { id: 5, name: "Keripik Pisang", category: "Makanan", price: 12000, image: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=600" },
-  { id: 6, name: "Tas Rajut", category: "Fashion", price: 65000, image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600" },
-  { id: 7, name: "Sambal Homemade", category: "Makanan", price: 20000, image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600" },
-  { id: 8, name: "Jus Buah", category: "Minuman", price: 15000, image: "https://i.pinimg.com/1200x/ba/0c/12/ba0c12b771ed1a1a25e8aaad733c5c85.jpg" }
+  {
+    id: 1,
+    name: "Makaroni Pedas",
+    category: "Makanan",
+    price: 15000,
+    image: "https://i.pinimg.com/736x/36/bf/39/36bf39fb8a93718f0eecfe8c8935a629.jpg",
+    description: "Makaroni renyah dengan bumbu pedas."
+  },
+  {
+    id: 2,
+    name: "Cookies Premium",
+    category: "Makanan",
+    price: 25000,
+    image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=600",
+    description: "Cookies homemade dengan rasa premium."
+  },
+  {
+    id: 3,
+    name: "Kopi Susu",
+    category: "Minuman",
+    price: 12000,
+    image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600",
+    description: "Kopi susu segar dengan rasa creamy."
+  },
+  {
+    id: 4,
+    name: "Gift Hampers",
+    category: "Kerajinan",
+    price: 70000,
+    image: "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?w=600",
+    description: "Hampers cantik untuk hadiah spesial."
+  },
+  {
+    id: 5,
+    name: "Keripik Pisang",
+    category: "Makanan",
+    price: 18000,
+    image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600",
+    description: "Keripik pisang renyah khas UMKM."
+  },
+  {
+    id: 6,
+    name: "Tas Rajut",
+    category: "Fashion",
+    price: 85000,
+    image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600",
+    description: "Tas rajut handmade yang unik."
+  },
+  {
+    id: 7,
+    name: "Sambal Homemade",
+    category: "Makanan",
+    price: 20000,
+    image: "https://i.pinimg.com/1200x/7c/36/07/7c360794a54169435b3d7b2bf6f7dea1.jpg",
+    description: "Sambal rumahan dengan cita rasa khas."
+  },
+  {
+    id: 8,
+    name: "Jus Buah",
+    category: "Minuman",
+    price: 14000,
+    image: "https://i.pinimg.com/1200x/ba/0c/12/ba0c12b771ed1a1a25e8aaad733c5c85.jpg",
+    description: "Minuman buah segar tanpa ribet."
+  }
 ];
 
-// AMBIL PRODUK DARI PENYIMPANAN BROWSER
-let adminProducts;
+// =====================================
+// SINKRONISASI DATA PRODUK
+// =====================================
+
+let adminProducts = [];
+
+try {
+  const savedVersion = localStorage.getItem("umkmateProductsVersion");
+  const savedProducts = JSON.parse(
+    localStorage.getItem("umkmateProducts")
+  );
+
+  if (
+    savedVersion !== PRODUCT_DATA_VERSION ||
+    !Array.isArray(savedProducts)
+  ) {
+    adminProducts = defaultProducts.map(product => ({ ...product }));
+
+    localStorage.setItem(
+      "umkmateProducts",
+      JSON.stringify(adminProducts)
+    );
+
+    localStorage.setItem(
+      "umkmateProductsVersion",
+      PRODUCT_DATA_VERSION
+    );
+  } else {
+    adminProducts = savedProducts;
+  }
+} catch (error) {
+  adminProducts = defaultProducts.map(product => ({ ...product }));
+}
 
 try {
   const savedProducts = JSON.parse(localStorage.getItem("umkmateProducts"));
