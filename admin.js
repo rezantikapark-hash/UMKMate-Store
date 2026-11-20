@@ -1,8 +1,7 @@
 
 
-// DATA AWAL PRODUK
-const PRODUCT_DATA_VERSION = "2";
 
+// DATA AWAL PRODUK
 const defaultProducts = [
   {
     id: 1,
@@ -70,49 +69,32 @@ const defaultProducts = [
   }
 ];
 
-// =====================================
-// SINKRONISASI DATA PRODUK
-// =====================================
-
 let adminProducts = [];
 
 try {
-  const savedVersion = localStorage.getItem("umkmateProductsVersion");
   const savedProducts = JSON.parse(
     localStorage.getItem("umkmateProducts")
   );
 
-  if (
-    savedVersion !== PRODUCT_DATA_VERSION ||
-    !Array.isArray(savedProducts)
-  ) {
-    adminProducts = defaultProducts.map(product => ({ ...product }));
+  adminProducts = Array.isArray(savedProducts)
+    ? savedProducts
+    : defaultProducts.map(product => ({ ...product }));
 
+  if (!Array.isArray(savedProducts)) {
     localStorage.setItem(
       "umkmateProducts",
       JSON.stringify(adminProducts)
     );
-
-    localStorage.setItem(
-      "umkmateProductsVersion",
-      PRODUCT_DATA_VERSION
-    );
-  } else {
-    adminProducts = savedProducts;
   }
 } catch (error) {
   adminProducts = defaultProducts.map(product => ({ ...product }));
 }
 
-try {
-  const savedProducts = JSON.parse(localStorage.getItem("umkmateProducts"));
-  adminProducts = Array.isArray(savedProducts) ? savedProducts : defaultProducts;
-} catch (error) {
-  adminProducts = defaultProducts;
-}
-
 function saveProducts() {
-  localStorage.setItem("umkmateProducts", JSON.stringify(adminProducts));
+  localStorage.setItem(
+    "umkmateProducts",
+    JSON.stringify(adminProducts)
+  );
 }
 
 function formatPrice(price) {
