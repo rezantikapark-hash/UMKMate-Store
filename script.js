@@ -46,7 +46,7 @@ let products = [
     name: "Gift Hampers",
     category: "Kerajinan",
     price: 70000,
-    image: "https://i.pinimg.com/736x/4a/10/0e/4a100eaa6c43b80b199a41152d67a5ca.jpg",
+    image: "https://i.pinimg.com/736x/6a/5a/51/6a5a515af9bbfbd981df115366976505.jpg",
     description: "Hampers cantik untuk hadiah spesial."
   },
   {
