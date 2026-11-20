@@ -91,33 +91,18 @@ const PRODUCT_STORAGE_KEY = "umkmateProducts";
 const PRODUCT_VERSION_KEY = "umkmateProductsVersion";
 
 try {
-  const savedVersion = localStorage.getItem(PRODUCT_VERSION_KEY);
-  const savedProducts = JSON.parse(
-    localStorage.getItem(PRODUCT_STORAGE_KEY)
+  localStorage.setItem(
+    PRODUCT_STORAGE_KEY,
+    JSON.stringify(products)
   );
 
-  // Jika versi berubah, gunakan data terbaru dari VS Code.
-  if (
-    savedVersion !== PRODUCT_DATA_VERSION ||
-    !Array.isArray(savedProducts)
-  ) {
-    localStorage.setItem(
-      PRODUCT_STORAGE_KEY,
-      JSON.stringify(products)
-    );
-
-    localStorage.setItem(
-      PRODUCT_VERSION_KEY,
-      PRODUCT_DATA_VERSION
-    );
-  } else {
-    // Jika versi sama, gunakan perubahan yang disimpan melalui admin.
-    products = savedProducts;
-  }
+  localStorage.setItem(
+    PRODUCT_VERSION_KEY,
+    PRODUCT_DATA_VERSION
+  );
 } catch (error) {
-  console.error("Gagal memuat data produk:", error);
+  console.error("Gagal memperbarui data produk:", error);
 }
-
 
 // ==================================
 // 3. PENYIMPANAN KERANJANG
