@@ -62,7 +62,7 @@ let products = [
     name: "Tas Rajut",
     category: "Fashion",
     price: 85000,
-    image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600",
+    image: "https://i.pinimg.com/736x/9f/5d/39/9f5d393fc6cdba0686d05b76b898b151.jpg",
     description: "Tas rajut handmade yang unik."
   },
   {
